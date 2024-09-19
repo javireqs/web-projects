@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 5 - Part 1</title>
+    <link rel="stylesheet" type="text/css" href="hw5styles.css">
+    <style>
+        #error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Info</h1>
+        <a href="hw5.html">Back to Homework 5 Main Page</a>
+    </header>
+    <form id="user-form">
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" name="full-name"><br>
+        <label>Age Group:</label>
+        <input type="radio" id="age-group-less-21" name="age-group" value="less than 21">
+        <label for="age-group-less-21">Less than 21</label>
+        <input type="radio" id="age-group-21-50" name="age-group" value="between 21 and 50">
+        <label for="age-group-21-50">Between 21 and 50</label>
+        <input type="radio" id="age-group-older-50" name="age-group" value="older than 50">
+        <label for="age-group-older-50">Older than 50</label><br>
+    
+        <label>Browsers Used:</label>
+        <input type="checkbox" id="browser-firefox" name="browser" value="Firefox">
+        <label for="browser-firefox">Firefox</label>
+        <input type="checkbox" id="browser-edge" name="browser" value="Edge">
+        <label for="browser-edge">Edge</label>
+        <input type="checkbox" id="browser-chrome" name="browser" value="Chrome">
+        <label for="browser-chrome">Chrome</label>
+        <input type="checkbox" id="browser-safari" name="browser" value="Safari">
+        <label for="browser-safari">Safari</label><br>
+    
+        <label for="movie-preference">Movie Preference:</label>
+        <select id="movie-preference" name="movie-preference">
+            <option value="">Select a movie type</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select><br>
+    
+        <button type="button" id="submit-btn">Submit</button>
+        <button type="reset" id="clear-btn">Clear</button>
+    </form>
+    
+    <div id="output"></div>
+    
+    <script>
+        document.getElementById("submit-btn").addEventListener("click", function() {
+            const fullName = document.getElementById("full-name").value;
+            const ageGroup = document.querySelector('input[name="age-group"]:checked');
+            const browsers = document.querySelectorAll('input[name="browser"]:checked');
+            const moviePreference = document.getElementById("movie-preference").value;
+            const output = document.getElementById("output");
+    
+            output.innerHTML = "";
+    
+            let errorMessage = "";
+            let errorCount = 0;
+    
+            if (!fullName) {
+                errorMessage += "Full name is required.<br>";
+                errorCount++;
+            }
+            if (!ageGroup) {
+                errorMessage += "Please select an age group.<br>";
+                errorCount++;
+            }
+            if (browsers.length === 0) {
+                errorMessage += "Please select at least one browser.<br>";
+                errorCount++;
+                }
+            if (!moviePreference) {
+                errorMessage += "Please select a movie preference.<br>";
+                errorCount++;
+            }
+            if (errorCount > 0) {
+            output.innerHTML = `<p id="error-message">${errorMessage}</p>`;
+            } 
+            else {
+            output.innerHTML = "<p>Thanks, your data was submitted!</p>";
+            }
+        });
+
+        document.getElementById("clear-btn").addEventListener("click", function() {
+            document.getElementById("output").innerHTML = "";
+        });
+    </script>
+    </body>
+    </html>

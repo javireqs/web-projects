@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sales Calculator</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+	<style>
+		#salesForm {
+			margin: auto;
+			width: 50%;
+			border: 1px solid #ccc;
+			padding: 10px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+		}
+		#salesForm h1 {
+			text-align: center;
+		}
+		#salesForm label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		#salesForm input[type="number"] {
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			width: 100%;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		}
+		#salesForm input[type="submit"] {
+			padding: 10px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		#results {
+			margin: auto;
+			width: 50%;
+			text-align: right;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+	<script>
+		$(function() {
+			$("#salespersonName").tooltip({
+				content: "Please make sure that the salesperson's name is spelled correctly"
+			});
+		});
+
+		function calculate() {
+			// get the input values
+			var item1 = parseFloat($("#item1").val());
+			var item2 = parseFloat($("#item2").val());
+			var item3 = parseFloat($("#item3").val());
+			var item4 = parseFloat($("#item4").val());
+
+			// check for valid input
+			if (item1 < 0 || item2 < 0 || item3 < 0 || item4 < 0) {
+				alert("Negative items sold is invalid!");
+				return;
+			}
+
+			// calculate the total sold and total earned
+			var totalSold = item1 * 20 + item2 * 10 + item3 * 5 + item4 * 2;
+			var totalEarned = totalSold * 0.1;
+
+			// output the results
+			$("#totalSold").text("$" + totalSold.toFixed(2));
+			$("#totalEarned").text("$" + totalEarned.toFixed(2));
+		}
+	</script>
+</head>
+<body>
+	<div id="salesForm">
+		<h1>Sales Calculator</h1>
+		<label for="salespersonName">Salesperson's Name:</label>
+		<input type="text" id="salespersonName" name="salespersonName"><br>
+		<label for="item1">Item 1 (sold at $20 each):</label>
+		<input type="number" id="item1" name="item1" min="0"><br>
+        <label for="item2">Item 2 (sold at $10 each):</label>
+        <input type="number" id="item2" name="item2" min="0"><br>
+        <label for="item3">Item 3 (sold at $5 each):</label>
+        <input type="number" id="item3" name="item3" min="0"><br>
+        <label for="item4">Item 4 (sold at $2 each):</label>
+        <input type="number" id="item4" name="item4" min="0"><br>
+        <input type="submit" value="Calculate" onclick="calculate()">
+    </div>
+    <div id="results">
+        <p>Total sold: <span id="totalSold">$0.00</span></p>
+        <p>Total earned: <span id="totalEarned">$0.00</span></p>
+    </div>  
+</body>
+</html>

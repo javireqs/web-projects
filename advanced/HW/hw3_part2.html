@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Homework 3 - Part 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A web page to calculate sales commissions.">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+        <style>
+            html {
+                text-align: center;
+            }
+            body {
+                background-image: url(hypnotize.png);
+                background-color: lavenderblush;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                }
+                header {
+                    background-color: darkslateblue;
+                    color: #fff;
+                    padding: 20px;
+                }
+                h1 {
+                    margin: 0;
+                    font-size: 36px;
+                    line-height: 1.5;
+                    text-align: center;
+                }
+                .container {
+                    max-width: 960px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                nav {
+                    font-size: larger;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                }
+                a {
+                    color: lightcyan;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $("#salespersonName").tooltip({
+                    content: "Please make sure that the salesperson's name is spelled correctly"
+                });
+            });
+
+    scss
+
+        function calculateCommission() {
+            var item1Qty = parseInt($("#item1Qty").val());
+            var item2Qty = parseInt($("#item2Qty").val());
+            var item3Qty = parseInt($("#item3Qty").val());
+            var item4Qty = parseInt($("#item4Qty").val());
+            
+            if(isNaN(item1Qty) || isNaN(item2Qty) || isNaN(item3Qty) || isNaN(item4Qty)) {
+                alert("Please enter valid numeric input for all items.");
+                return;
+            }
+            
+            if(item1Qty < 0 || item2Qty < 0 || item3Qty < 0 || item4Qty < 0) {
+                alert("Please enter non-negative values for all items.");
+                return;
+            }
+            
+            var totalSales = (item1Qty * 20.99) + (item2Qty * 12.75) + (item3Qty * 9.95) + (item4Qty * 35.89);
+            var commission = (totalSales * 0.09) + 250;
+            
+            $("#totalSales").html("$" + totalSales.toFixed(2));
+            $("#commission").html("$" + commission.toFixed(2));
+        }
+    </script>
+    </head>
+    <body>
+        <header>
+            <h1>Sales Commission Calculator</h1>
+            <nav style="text-align: center;"><strong><a href="hw3.html">Main</a></strong> <strong><a href="hw3_part1.html">Part 1</a></strong> <strong><a href="hw3_part3.html">Part 3</a></strong></nav>
+        </header>
+        <strong>
+        <form>
+            <br>
+            <label for="salespersonName">Salesperson's Name:</label>
+            <input type="text" id="salespersonName" title="Enter the name of the salesperson.">
+            <br><br>
+            <label for="item1Qty">Item 1 (Value: $20.99):</label>
+            <input type="number" id="item1Qty" min="0">
+            <br><br>
+            <label for="item2Qty">Item 2 (Value: $12.75):</label>
+            <input type="number" id="item2Qty" min="0">
+            <br><br>
+            <label for="item3Qty">Item 3 (Value: $9.95):</label>
+            <input type="number" id="item3Qty" min="0">
+            <br><br>
+            <label for="item4Qty">Item 4 (Value: $35.89):</label>
+            <input type="number" id="item4Qty" min="0">
+            <br><br>
+            <input type="button" value="Calculate Commission" onclick="calculateCommission()">
+            <br><br>
+            <label>Total Sales:</label>
+            <span id="totalSales" style="float:right;"></span>
+            <br><br>
+            <label>Commission:</label>
+            <span id="commission" style="float:right;"></span>
+        </form>
+        </strong>
+    </body>
+</html>

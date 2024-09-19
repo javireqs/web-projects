@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phone Number Separator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="hw6styles.css">
+</head>
+<body>
+    <h1>Phone Number Separator</h1>
+    <form id="phoneForm">
+        <input type="text" id="phoneInput" placeholder="Enter your phone number">
+        <button type="button" onclick="processPhone()">Submit</button>
+        <button type="reset">Clear</button>
+    </form>
+    <p id="error"></p>
+    <input type="text" id="areaCode" readonly>
+    <input type="text" id="firstThree" readonly>
+    <input type="text" id="lastFour" readonly>
+    <a href="hw6.html">Go back to main page</a>
+
+    <script>
+        $(document).ready(function() {
+            $('#phoneInput').mask('(000) 000-0000');
+        });
+
+        function processPhone() {
+            var phone = document.getElementById('phoneInput').value;
+            var error = document.getElementById('error');
+            var areaCode = document.getElementById('areaCode');
+            var firstThree = document.getElementById('firstThree');
+            var lastFour = document.getElementById('lastFour');
+
+            var match = phone.match(/^\((\d{3})\) (\d{3})-(\d{4})$/);
+            if (match) {
+                error.innerHTML = "";
+                areaCode.value = match[1];
+                firstThree.value = match[2];
+                lastFour.value = match[3];
+            } else {
+                error.innerHTML = "Please enter your phone number in the format: (999) 999-9999";
+                areaCode.value = "";
+                firstThree.value = "";
+                lastFour.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

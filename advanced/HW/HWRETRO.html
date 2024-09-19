@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Grade Calculator</title>
+	<script>
+		function calculateGrade() {
+			// Get input values
+			var hwAvg = parseFloat(document.getElementById("hwAvg").value);
+			var midExam = parseFloat(document.getElementById("midExam").value);
+			var finalExam = parseFloat(document.getElementById("finalExam").value);
+			var participation = parseFloat(document.getElementById("participation").value);
+
+			// Check for valid input
+			if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation)) {
+				document.getElementById("output").innerHTML = "Error: Invalid input";
+				return;
+			}
+
+			if (hwAvg < 0 || hwAvg > 100 || midExam < 0 || midExam > 100 || finalExam < 0 || finalExam > 100 || participation < 0 || participation > 100) {
+				document.getElementById("output").innerHTML = "Error: Input must be between 0-100";
+				return;
+			}
+
+			// Calculate final average
+			var finalAvg = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation);
+
+			// Round final average to an integer
+			finalAvg = Math.round(finalAvg);
+
+			// Determine letter grade
+			var letterGrade;
+			if (finalAvg >= 90) {
+				letterGrade = "A";
+			} else if (finalAvg >= 80) {
+				letterGrade = "B";
+			} else if (finalAvg >= 70) {
+				letterGrade = "C";
+			} else if (finalAvg >= 60) {
+				letterGrade = "D";
+			} else {
+				letterGrade = "F";
+			}
+
+			// Display final average and letter grade
+			document.getElementById("output").innerHTML = "Final Average: " + finalAvg + "<br>Letter Grade: " + letterGrade;
+
+			// If final grade is D or F, display "Student must retake the course"
+			if (letterGrade == "D" || letterGrade == "F") {
+				document.getElementById("output").innerHTML += "<br>Student must retake the course";
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Student Grade Calculator</h1>
+	<form>
+		<label for="hwAvg">Homework Average:</label>
+		<input type="text" id="hwAvg"><br><br>
+		<label for="midExam">Midterm Exam:</label>
+		<input type="text" id="midExam"><br><br>
+		<label for="finalExam">Final Exam:</label>
+		<input type="text" id="finalExam"><br><br>
+		<label for="participation">Participation:</label>
+		<input type="text" id="participation"><br><br>
+		<input type="button" value="Calculate" onclick="calculateGrade()">
+	</form>
+	<br>
+	<div id="output"></div>
+</body>
+</html>

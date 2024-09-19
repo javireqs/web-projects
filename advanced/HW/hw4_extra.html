@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A webpage that displays a square using asterisks and an input from 2-10">
+    <title>Extra Credit</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error {
+            color: red;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .navbar a:hover {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extra Credit</h1>
+    <nav class="navbar">
+        <a href="hw4.html">Main Page</a>
+        <a href="hw4_part1.html">Part 1</a>
+        <a href="hw4_part2.html">Part 2</a>
+    </nav>
+    <form id="form">
+        <label for="number">Enter a number (integer) between 2 and 10:</label>
+        <input type="number" id="number" name="number">
+        <button type="button" onclick="displaySquare()">Process</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+    <pre id="output"></pre>
+
+    <script>
+        function displaySquare() {
+            const number = parseInt(document.getElementById('number').value);
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+            output.classList.remove('error');
+
+            if (isNaN(number) || number < 2 || number > 10) {
+                output.classList.add('error');
+                output.innerText = 'Error: Please enter a valid number between 2 and 10.';
+                return;
+            }
+
+            let square = '';
+            for (let i = 0; i < number; i++) {
+                for (let j = 0; j < number; j++) {
+                    if (i === 0 || i === number - 1 || j === 0 || j === number - 1) {
+                        square += '* ';
+                    } else {
+                        square += '  ';
+                    }
+                }
+                square += '\n';
+            }
+            output.innerText = square;
+        }
+
+        function clearForm() {
+            document.getElementById('form').reset();
+            document.getElementById('output').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

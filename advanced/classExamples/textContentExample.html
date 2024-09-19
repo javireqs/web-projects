@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>textContent</title>
+
+<style>
+body {background-color: #f5f5dc; }
+.body { width: 360px; margin: 0px auto;}
+#result { background-color: lightblue; color:blue; font-style:italic; }
+
+</style>
+
+<script>
+
+function process() {
+
+var textOutput = "This is your satisfaction level: ";
+
+var x = document.getElementById('level').value;
+textOutput += x;
+
+document.getElementById("result").textContent = textOutput;
+
+}
+
+</script>
+
+</head>
+
+<body>
+<section class="body">
+<h3>Output with textContent</h3>
+
+<form>
+<input type="number" min="0" max="10" id="level">
+<input type="button" value="Get Satisfaction" onclick="process();">
+</form>
+
+<br><br>
+
+<div id="result"></div>
+
+</section>
+</body>
+</html>

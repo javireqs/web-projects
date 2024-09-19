@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Decimal Manipulator</title>
+    <link rel="stylesheet" type="text/css" href="hw6styles.css">
+</head>
+<body>
+    <h1>Decimal Manipulator</h1>
+    <form id="decimalForm">
+        <input type="text" id="decimalInput" placeholder="Enter a number with 4 decimals">
+        <button type="button" onclick="processDecimal()">Submit</button>
+        <button type="reset">Clear</button>
+    </form>
+    <p id="output"></p>
+    <a href="hw6.html">Go back to main page</a>
+
+    <script>
+        function processDecimal() {
+            var input = document.getElementById('decimalInput').value;
+            var output = document.getElementById('output');
+
+            var decimal = parseFloat(input);
+            if (isNaN(decimal) || !input.includes('.') || input.split('.')[1].length < 4) {
+                output.innerHTML = "You need to type a number with at least 4 decimals, please try again.";
+                return;
+            }
+
+            output.innerHTML = `You typed number ${decimal.toFixed(4)}<br>
+                                Rounded to the nearest integer = ${Math.round(decimal)}<br>
+                                Square root rounded to integer = ${Math.round(Math.sqrt(decimal))}<br>
+                                Rounded to the nearest 10th position = ${parseFloat(decimal.toFixed(1))}<br>
+                                Rounded to the nearest 100th position = ${parseFloat(decimal.toFixed(2))}<br>
+                                Rounded to the nearest 1000th position = ${parseFloat(decimal.toFixed(3))}`;
+        }
+    </script>
+</body>
+</html>

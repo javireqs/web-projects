@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework 7 - Part 1</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('input[type=radio][name=bgColor]').change(function() {
+        $('#styledDiv').css('background-color', this.value);
+      });
+      $('#bold').change(function() {
+        if(this.checked) {
+          $('#styledDiv').css('font-weight', 'bold');
+        } else {
+          $('#styledDiv').css('font-weight', 'normal');
+        }
+      });
+      $('#italic').change(function() {
+        if(this.checked) {
+          $('#styledDiv').css('font-style', 'italic');
+        } else {
+          $('#styledDiv').css('font-style', 'normal');
+        }
+      });
+      $('#underline').change(function() {
+        if(this.checked) {
+          $('#styledDiv').css('text-decoration', 'underline');
+        } else {
+          $('#styledDiv').css('text-decoration', 'none');
+        }
+      });
+      $('#fontSize').change(function() {
+        $('#styledDiv').css('font-size', this.value);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Homework 7 - Part 1</h1>
+  <nav><a href="hw7.html">Back to Homework 7</a></nav>
+  <div id="styledDiv">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Aliquam non luctus sem.</p>
+    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+  </div>
+  <form>
+    <label>Select background color:</label><br>
+    <input type="radio" id="color1" name="bgColor" value="lightblue">
+    <label for="color1">Light Blue</label><br>
+    <input type="radio" id="color2" name="bgColor" value="lightgreen">
+    <label for="color2">Light Green</label><br>
+    <label>Select text style:</label><br>
+    <input type="checkbox" id="bold" name="textStyle" value="font-weight">
+    <label for="bold">Bold</label><br>
+    <input type="checkbox" id="italic" name="textStyle" value="font-style">
+    <label for="italic">Italic</label><br>
+    <input type="checkbox" id="underline" name="textStyle" value="text-decoration">
+    <label for="underline">Underline</label><br>
+    <label for="fontSize">Select font size:</label><br>
+    <select id="fontSize" name="fontSize">
+      <option value="1em">1em</option>
+      <option value="1.5em">1.5em</option>
+      <option value="2em">2em</option>
+    </select>
+  </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Character Counter</title>
+    <link rel="stylesheet" type="text/css" href="hw6styles.css">
+</head>
+<body>
+    <h1>Character Counter</h1>
+    <form id="characterForm">
+        <textarea id="contentInput" placeholder="Type your content here"></textarea>
+        <input type="text" id="characterInput" maxlength="1" placeholder="Enter a character">
+        <button type="button" onclick="countCharacter()">Submit</button>
+    </form>
+    <p id="output"></p>
+    <a href="hw6.html">Go back to main page</a>
+
+    <script>
+        function countCharacter() {
+            var content = document.getElementById('contentInput').value;
+            var character = document.getElementById('characterInput').value;
+            var output = document.getElementById('output');
+
+            var count = (content.match(new RegExp(character, "gi")) || []).length;
+
+            if (count === 0) {
+                output.innerHTML = "";
+                var newWindow = window.open("", "newWindow", "width=300,height=100,top=100,left=100");
+                newWindow.document.write(`<p>Search character ${character} not found in the content you typed</p>
+                                          <button onclick="window.close()">Close</button>`);
+            } else {
+                output.innerHTML = `Character ${character} shows up ${count} times in the content.`;
+            }
+        }
+    </script>
+</body>
+</html>

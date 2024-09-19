@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HW 5 - Part 2</title>
+	<link rel="stylesheet" type="text/css" href="hw5styles.css">
+	<script>
+		function openWebsiteMenu1() {
+			var selectBox = document.getElementById("menu1");
+			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+			if (selectedValue !== "") {
+				window.open(selectedValue, "_blank");
+			}
+		}
+
+		function openWebsiteMenu2() {
+			var selectBox = document.getElementById("menu2");
+			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+			if (selectedValue !== "") {
+				window.open(selectedValue, "_blank");
+			}
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1>Web Menus</h1>
+		<nav>
+			<a href="hw5.html">Back to Homework 5 Main Page</a>
+		</nav>
+	</header>
+	<main>
+		<label for="menu1">Pulldown Menu 1: </label>
+		<select id="menu1" onchange="openWebsiteMenu1()">
+			<option value="">--Select a website--</option>
+			<option value="https://www.google.com/">Google</option>
+			<option value="https://www.yahoo.com/">Yahoo</option>
+			<option value="https://www.bing.com/">Bing</option>
+		</select>
+		<br><br>
+		<label for="menu2">Pulldown Menu 2: </label>
+		<select id="menu2">
+			<option value="">--Select a website--</option>
+			<option value="https://www.wikipedia.org/">Wikipedia</option>
+			<option value="https://www.amazon.com/">Amazon</option>
+			<option value="https://www.ebay.com/">eBay</option>
+		</select>
+		<button onclick="openWebsiteMenu2()">Go</button>
+	</main>
+</body>
+</html>

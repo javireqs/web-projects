@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="hw5styles.css">
+    <title>HW 5 - Part 3</title>
+    <style>
+        textarea, input[type="text"] {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>State Information</h1>
+        <a href="hw5.html">Back to Homework 5 Main Page</a>
+    </header>
+    <form onsubmit="event.preventDefault(); displayStateInfo();">
+        <label for="stateInput">Enter the state name or abbreviation:</label>
+        <input type="text" id="stateInput" name="stateInput">
+        <button type="submit">State Info</button>
+        <button type="reset">Clear</button>
+    </form>
+    <div id="output"></div>
+    <script>
+        const statesData = [
+            ["AL", "Alabama", "Montgomery", "4,903,185"],
+            ["AK", "Alaska", "Juneau", "731,545"],
+            ["AZ", "Arizona", "Phoenix", "7,278,717"],
+            ["AR", "Arkansas", "Little Rock", "3,017,825"],
+            ["CA", "California", "Sacramento", "39,512,223"],
+            ["CO", "Colorado", "Denver", "5,758,736"]
+        ];
+        function displayStateInfo() {
+            const input = document.getElementById("stateInput").value.trim().toUpperCase();
+            const output = document.getElementById("output");
+            let foundState = false;
+
+            for (const state of statesData) {
+                if (input === state[0] || input === state[1].toUpperCase()) {
+                    foundState = true;
+                    output.innerHTML = `Thanks for your inquiry, here is the information you requested:<br>
+                    State abbr = ${state[0]}<br>
+                    State Name = ${state[1]}<br>
+                    Capital = ${state[2]}<br>
+                    Population = ${state[3]}`;
+                    break;
+                }
+            }
+
+            if (!foundState) {
+                const stateNames = statesData.map(s => s[1]).join(', ');
+                output.innerHTML = `Sorry, we do not have information about this state! We only have information about: ${stateNames}`;
+            }
+        }
+    </script>
+    </body>
+    </html>

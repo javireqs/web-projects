@@ -1,0 +1,87 @@
+body {
+    background-color: yellow;
+}
+
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: red;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+}
+
+h2 {
+    color: blue;
+    text-align: right;
+    font-size: 30px;
+}
+
+p.intro:first-letter {
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+p.content:first-letter {
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.highlight-table {
+    background-color: cyan;
+    padding: 10px;
+    border-spacing: 5px;
+    animation: colorChange 10s forwards;
+}
+
+.highlight-table td {
+    text-align: center;
+    font-weight: bold;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: cyan;
+        color: black;
+    }
+    to {
+        background-color: green;
+        color: white;
+    }
+}
+
+/* banner animation */
+.banner {
+    overflow: hidden;
+    position: relative;
+    height: 50px;
+}
+
+.banner p {
+    font-size: 2em;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    /* Starting position */
+    transform:translateX(100%);
+    /* Apply animation to this element */
+    animation: scrollBanner 20s linear infinite;
+}
+
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

@@ -1,0 +1,74 @@
+/* CSS file */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F0E8;
+    color: #4B4A4A;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #7B4E2A;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  a {
+    color: #B36F46;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #7B4E2A;
+    text-decoration: underline;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFF8F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #D9C7B3;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #E8D6C1;
+    color: #4B4A4A;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #F7F0E6;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #FFF8F2;
+  }
+  
+  button {
+    background-color: #B36F46;
+    color: #FFF8F2;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #7B4E2A;
+  }
+  
+  

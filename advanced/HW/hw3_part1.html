@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Homework 3 - Part 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A web page for calculating student grades.">
+        <style>
+            html {
+                text-align: center;
+            }
+            body {
+                background-color: antiquewhite;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                background-image: url(whitediamond.png);
+                text-align: center;
+                background-color: bisque;
+                color: darkolivegreen;
+                padding: 20px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 36px;
+                line-height: 1.5;
+            }
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            li {
+                margin: 10px 0;
+            }
+            a {
+                color: darkolivegreen;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            nav {
+                font-size: larger;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+        <script>
+            function calculateGrade() {
+            // Get input values
+            let hwAvg = parseFloat(document.getElementById('hwAvg').value);
+            let midExam = parseFloat(document.getElementById('midExam').value);
+            let finalExam = parseFloat(document.getElementById('finalExam').value);
+            let participation = parseFloat(document.getElementById('participation').value);
+
+            // Check for valid input
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation)) {
+                document.getElementById('output').innerHTML = "Error: All input fields must be numbers";
+                return;
+            }
+
+            if (hwAvg < 0 || hwAvg > 100 || midExam < 0 || midExam > 100 || finalExam < 0 || finalExam > 100 || participation < 0 || participation > 100) {
+                document.getElementById('output').innerHTML = "Error: All input fields must be between 0 and 100";
+                return;
+            }
+
+            // Calculate final average
+            let finalAvg = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation);
+
+            // Calculate letter grade
+            let letterGrade;
+            if (finalAvg >= 90 && finalAvg <= 100) {
+                letterGrade = "A";
+            } else if (finalAvg >= 80 && finalAvg < 90) {
+                letterGrade = "B";
+            } else if (finalAvg >= 70 && finalAvg < 80) {
+                letterGrade = "C";
+            } else if (finalAvg >= 60 && finalAvg < 70) {
+                letterGrade = "D";
+            } else {
+                letterGrade = "F";
+            }
+
+            // Display final average and letter grade
+            document.getElementById('output').innerHTML = "Final Average: " + Math.round(finalAvg) + "<br>Final Letter Grade: " + letterGrade;
+
+            // Display retake message if necessary
+            if (letterGrade === "D" || letterGrade === "F") {
+                document.getElementById('output').innerHTML += "<br>Student must retake the course";
+            }
+
+            // Clear form for next calculation
+            document.getElementById('grade-form').reset();
+            }
+        </script>
+    </head>
+    <body>
+        <header> 
+            <h1>Student Grades</h1>
+            <nav style="text-align: center;"><strong><a href="hw3.html">Main</a></strong> <strong><a href="hw3_part2.html">Part 2</a></strong> <strong><a href="hw3_part3.html">Part 3</a></strong></nav>
+        </header>   
+        <br>
+
+        <strong>
+        <form id="grade-form">
+            <label for="hwAvg">Homework Average:</label>
+            <input type="text" id="hwAvg" name="hwAvg"><br>
+
+            <label for="midExam">Midterm Exam:</label>
+            <input type="text" id="midExam" name="midExam"><br>
+
+            <label for="finalExam">Final Exam:</label>
+            <input type="text" id="finalExam" name="finalExam"><br>
+
+            <label for="participation">Participation:</label>
+            <input type="text" id="participation" name="participation"><br>
+
+            <input type="button" value="Calculate" onclick="calculateGrade()">
+        </form>
+        </strong>
+
+        <div id="output"></div>
+    </body>
+</html>

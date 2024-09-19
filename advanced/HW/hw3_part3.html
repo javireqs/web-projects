@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Homework 3 - Part 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web page for converting Celsius to Fahrenheit & vice-versa.">
+    <style>
+      html {
+        text-align: center;
+      }
+      body {
+        background-color: orange;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: darkgreen;
+        color: mintcream;
+        padding: 20px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 36px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      nav {
+        font-size: larger;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding: 0 10px 0 10px;
+      }
+      a {
+        color: floralwhite;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Temperature Converter</h1>
+      <nav style="text-align: center;"><strong><a href="hw3.html">Main</a></strong> <strong><a href="hw3_part1.html">Part 1</a></strong> <strong><a href="hw3_part2.html">Part 2</a></strong></nav>
+    </header>
+    <br><br>
+    <strong>
+    <form>
+      <label for="tempInput">Temperature:</label>
+      <input type="number" id="tempInput" name="tempInput" required>
+      <br><br>
+      <button type="button" id="convertCelsius">Convert to Celsius</button>
+      <button type="button" id="convertFahrenheit">Convert to Fahrenheit</button>
+      <button type="button" id="clearForm">Clear</button>
+      <br><br>
+      <label for="resultOutput">Result:</label>
+      <textarea id="resultOutput" name="resultOutput" readonly></textarea>
+    </form>
+    </strong>
+    <script>
+      function convertToFahrenheit(celsius) {
+        return Math.round((9/5 * celsius) + 32);
+      }
+      
+      function convertToCelsius(fahrenheit) {
+        return Math.round(5/9 * (fahrenheit - 32));
+      }
+      
+      function showError() {
+        document.getElementById("resultOutput").value = "Invalid input. Please enter a valid temperature.";
+      }
+      
+      function clearOutput() {
+        document.getElementById("resultOutput").value = "";
+      }
+      
+      document.getElementById("convertCelsius").addEventListener("click", function() {
+        var celsius = parseFloat(document.getElementById("tempInput").value);
+        if (isNaN(celsius)) {
+          showError();
+        } else {
+          clearOutput();
+          var fahrenheit = convertToFahrenheit(celsius);
+          document.getElementById("resultOutput").value = celsius + "°C is " + fahrenheit + "°F";
+        }
+      });
+      
+      document.getElementById("convertFahrenheit").addEventListener("click", function() {
+        var fahrenheit = parseFloat(document.getElementById("tempInput").value);
+        if (isNaN(fahrenheit)) {
+          showError();
+        } else {
+          clearOutput();
+          var celsius = convertToCelsius(fahrenheit);
+          document.getElementById("resultOutput").value = fahrenheit + "°F is " + celsius + "°C";
+        }
+      });
+      
+      document.getElementById("clearForm").addEventListener("click", function() {
+        document.getElementById("tempInput").value = "";
+        clearOutput();
+      });
+    </script>
+  </body>
+</html>

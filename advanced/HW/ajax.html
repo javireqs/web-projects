@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Music App</title>
+  <style>
+  table,th,td {
+    border : 1px solid black;
+    border-collapse: collapse;
+  }
+  th,td {
+    padding: 5px;
+  }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav style="text-align: left;"><a href="hw1.html">Home</a></nav>
+  </header>
+
+<button type="button" onclick="loadDoc()">Get CD collection</button>
+<br><br>
+<table id="demo"></table>
+
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    myFunction(this);
+  }
+  xhttp.open("GET", "cd_catalog.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+
+<section>
+  <h2>Explanation of AJAX</h2>
+  <div>
+    <p>The JavaScript and AJAX code in this HTML file demonstrate the usage of AJAX (Asynchronous JavaScript and XML) to retrieve data from an XML file. When the "Get CD collection" button is clicked, an AJAX request is made to the "cd_catalog.xml" file using the XMLHttpRequest object.</p>
+    <p>The response from the XML file is then parsed and the artist and title information of each CD are extracted. These details are then dynamically added to an HTML table on the web page using JavaScript.</p>
+  </div>
+</section>
+
+<section>
+  <h2>REST API</h2>
+  <div>
+    <p>In this section, I'll discuss the IP geolocation API as an example of a REST API.</p>
+    <p>A REST API is a type of web service that follows the principles of Representational State Transfer (REST). It allows clients to access and interact with resources over the internet using standard HTTP methods such as GET, POST, PUT, and DELETE.</p>
+    <p>Now, let's provide some key information about the IP geolocation API:</p>
+    <ul>
+      <li><strong>Response file type:</strong> The IP geolocation API typically provides the response in JSON format, which is a lightweight data interchange format.</li>
+      <li><strong>API key requirement:</strong> To access and use the IP geolocation API, developers generally need to obtain an API key. This key is used for authentication and to track usage limits.</li>
+      <li><strong>Usage fee:</strong> The availability and cost of the API can vary. Some IP geolocation APIs offer free access with limited features or request limits, while others may require a paid subscription for full access or higher usage thresholds.</li>
+      <li><strong>Documentation:</strong> Developers can find detailed documentation that provides guidance on how to use the IP geolocation API effectively. Here is a <a href="https://ipgeolocation.io/documentation.html" target="_blank" rel="noopener">link</a> to the documentation, which includes information about the API endpoints, request parameters, and response structure.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Example Using the API</h2>
+    <p>Now, let's demonstrate an example of using the IP geolocation API:</p>
+    <pre><code>
+      // Make a GET request to retrieve IP geolocation data
+      # Get astronomical information for address 'New York, US'
+      $ curl --location --request GET 'https://api.ipgeolocation.io/astronomy?apiKey=API_KEY&location=New%20York,%20US'
+
+      {
+          "location": {
+              "country": "United States of America",
+              "state": "New York",
+              "city": "",
+              "latitude": 41.3558443,
+              "longitude": -74.00776718841271
+          },
+          "date": "2020-12-21",
+          "current_time": "06:54:35.901",
+          "sunrise": "07:18",
+          "sunset": "16:30",
+          "sun_status": "-",
+          "solar_noon": "11:54",
+          "day_length": "09:12",
+          "sun_altitude": -4.811160884765326,
+          "sun_distance": 1.4717185206455985E8,
+          "sun_azimuth": 117.23599031322385,
+          "moonrise": "12:12",
+          "moonset": "23:58",
+          "moon_status": "-",
+          "moon_altitude": -52.075439497726244,
+          "moon_distance": 398627.6792531222,
+          "moon_azimuth": 29.97617258900459,
+          "moon_parallactic_angle": -26.12246297084847
+      }
+    </code></pre>
+    <p>In the above example, The given code is making a GET request to the IPGeolocation API to retrieve astronomical information for the address 'New York, US'. Here's a summary of what the code is doing:
+
+      The curl command is used to send a GET request to the API endpoint: https://api.ipgeolocation.io/astronomy.
+
+      The request includes the API key (API_KEY) as a query parameter for authentication.
+
+      The API response contains various astronomical information related to the specified location and date. Here are some of the key details provided in the response:
+          Location information: Country (United States of America), State (New York), City (empty), Latitude (41.3558443), Longitude (-74.00776718841271).
+          Date: December 21, 2020.
+          Current time: 06:54:35.901.
+          Sunrise time: 07:18.
+          Sunset time: 16:30.
+          Sun status: "-".
+          Solar noon time: 11:54.
+          Day length: 09:12.
+          Sun altitude: -4.811160884765326.
+          Sun distance: 147,171,852.06455985.
+          Sun azimuth: 117.23599031322385.
+          Moonrise time: 12:12.
+          Moonset time: 23:58.
+          Moon status: "-".
+          Moon altitude: -52.075439497726244.
+          Moon distance: 398,627.6792531222.
+          Moon azimuth: 29.97617258900459.
+          Moon parallactic angle: -26.12246297084847.
+
+      This API provides information about astronomical events and positions, such as sunrise, sunset, moonrise, moonset, and various other details related to the sun and moon for the specified location and date.</p>
+</section>
+
+</body>
+</html>

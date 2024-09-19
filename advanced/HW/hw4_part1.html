@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A webpage that calculates products and sums of specific integers, and a draggable box.">
+    <title>Part 1</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        #draggable { width: 100px; height: 100px; background: lightblue; cursor: move; }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .navbar a:hover {
+            color: #555;
+        }
+    </style>
+    <script>
+        $(function() {
+            $("#draggable").draggable();
+        });
+
+        function part1() {
+            let product1 = 1;
+            let sum1 = 0;
+            for (let i = 5; i <= 25; i += 4) {
+                product1 *= i;
+                sum1 += i;
+            }
+
+            let product2 = 1;
+            let sum2 = 0;
+            let j = 3;
+            while (j <= 18) {
+                product2 *= j;
+                sum2 += j;
+                j += 3;
+            }
+
+            document.getElementById('result1').innerText = `The result of 5 * 9 * 13 * 17 * 21 * 25 is ${product1.toLocaleString()}`;
+            document.getElementById('result2').innerText = `The result of 5 + 9 + 13 + 17 + 21 + 25 is ${sum1.toLocaleString()}`;
+            document.getElementById('result3').innerText = `The result of 3 * 6 * 9 * 12 * 15 * 18 is ${product2.toLocaleString()}`;
+            document.getElementById('result4').innerText = `The result of 3 + 6 + 9 + 12 + 15 + 18 is ${sum2.toLocaleString()}`;
+        }
+
+        window.addEventListener('DOMContentLoaded', part1);
+    </script>
+</head>
+<body>
+    <h1>Part 1</h1>
+    <nav class="navbar">
+        <a href="hw4.html">Main Page</a>
+        <a href="hw4_part2.html">Part 2</a>
+        <a href="hw4_extra.html">Extra Credit</a>
+    </nav>
+    <div id="result1"></div>
+    <div id="result2"></div>
+    <div id="result3"></div>
+    <div id="result4"></div>
+    <div id="draggable">Drag me</div>
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Commission Calculator</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<style>
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		input {
+			margin-bottom: 10px;
+		}
+		.right {
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<h1>Commission Calculator</h1>
+	<label for="name" title="Please make sure that the salesperson's name is spelled correctly">Salesperson's Name:</label>
+	<input type="text" id="name" placeholder="Enter salesperson's name" />
+	<label for="item1">Item 1 (Value: $20.99):</label>
+	<input type="number" id="item1" min="0" value="0" />
+	<label for="item2">Item 2 (Value: $12.75):</label>
+	<input type="number" id="item2" min="0" value="0" />
+	<label for="item3">Item 3 (Value: $9.95):</label>
+	<input type="number" id="item3" min="0" value="0" />
+	<label for="item4">Item 4 (Value: $35.89):</label>
+	<input type="number" id="item4" min="0" value="0" />
+	<button id="calculate">Calculate</button>
+	<p>Total Sold: <span id="total-sold" class="right">$0.00</span></p>
+	<p>Total Commission: <span id="total-commission" class="right">$0.00</span></p>
+	<script>
+		$(document).ready(function() {
+			$("#name").tooltip({});
+
+			$("#calculate").click(function() {
+				var item1 = parseFloat($("#item1").val());
+				var item2 = parseFloat($("#item2").val());
+				var item3 = parseFloat($("#item3").val());
+				var item4 = parseFloat($("#item4").val());
+
+				if (isNaN(item1) || isNaN(item2) || isNaN(item3) || isNaN(item4)) {
+					alert("Please enter valid numeric input");
+					return;
+				}
+
+				if (item1 < 0 || item2 < 0 || item3 < 0 || item4 < 0) {
+					alert("Please enter valid numeric input");
+					return;
+				}
+
+				var totalSold = item1 * 20.99 + item2 * 12.75 + item3 * 9.95 + item4 * 35.89;
+				var commission = 250 + totalSold * 0.09;
+
+				$("#total-sold").text("$" + totalSold.toFixed(2));
+				$("#total-commission").text("$" + commission.toFixed(2));
+			});
+		});
+	</script>
+</body>
+</html>

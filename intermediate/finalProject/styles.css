@@ -1,0 +1,89 @@
+/* styles.css */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+    color: #222831;
+    background-color: #2F4F4F;
+}
+
+header {
+    background-color: #2F4F4F;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #2F4F4F;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-container {
+    display: flex;
+    flex-grow: 1;
+}
+
+nav {
+    background-color: #C0C0C0;
+    padding: 20px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+nav li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #2F4F4F;
+    border-radius: 4px;
+}
+
+nav a {
+    font-size: 1.2em;
+    color: gold;
+}
+
+main {
+    background-color: #FFFAFA;
+    padding: 20px;
+    width: 75%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+input, textarea {
+    margin: 10px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    nav, main {
+        width: 100%;
+    }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CNIT 133 Homework 2 - Part 2</title>
+        <meta name="description" content="Part 1 of Homework 2 for CNIT 133.">
+        <style>
+            .p1 { font-family: "Lucida Console", "Courier New", monospace; }
+            ul.a { list-style-type: circle; }
+            body { background-image: url('chinatown.jpg'); background-size: cover; }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+           /* $(document).ready(function()
+            {
+                $("button").click(function()
+                {
+                    $("#result").fadeOut("slow");
+                });
+            });*/ 
+
+            function calculate()
+            {
+                // variables
+                var num1, num2, num3, n1, n2, n3;
+                var sum, average, product;
+                var smallest, largest;
+
+                // get IDs
+                num1 = document.getElementById("num1").value;
+                num2 = document.getElementById("num2").value;
+                num3 = document.getElementById("num3").value;
+
+                // parse strings to integers
+                n1 = parseInt(num1);
+                n2 = parseInt(num2);
+                n3 = parseInt(num3);
+
+                sum = n1 + n2 + n3;
+                average = (n1 + n2 + n3)/3;
+                product = n1 * n2 * n3;
+                smallest = Math.min(n1, n2, n3);
+                largest = Math.max(n1, n2, n3);
+
+                if ( isNaN(n1) || isNaN(n2) || isNaN(n3) )
+                {
+                    document.getElementById("result").value = ("Error! You did not input a number. Please clear & try again.");
+                }
+                else
+                {
+                    document.getElementById("result").value = ("The sum is " + sum + "\n" +
+                                                                "The average is " + average + "\n" +
+                                                                "The product is " + product + "\n" +
+                                                                "The smallest number is " + smallest + "\n" +
+                                                                "The largest number is " + largest);
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <header>
+            <h1 style="text-align: center;"><em>Part 2</em></h1>
+        </header>
+        <nav style="text-align: center;"><em><a href="hw2.html">Main Page</a> &nbsp;&nbsp; <a href="hw2_part1.html">Part 1</a> &nbsp;&nbsp; <a href="hw2_extra.html">Extra Credit</a></em></nav>
+        
+        <h3 style="text-align: center;">Type an integer into each box!</h3>
+        <form name="numForm" style="text-align: center;">
+            <p>
+                <label for="num1">Number 1:</label>
+                <input name="num1" id="num1" type="number">
+            </p>
+            <p>
+                <label for="num2">Number 2:</label>
+                <input name="num2" id="num2" type="number">
+            </p>
+            <p>
+                <label for="num3">Number 3:</label>
+                <input name="num3" id="num3" type="number">
+            </p>
+            <br>Results:
+            <p>
+                <textarea rows="5" cols="70" name="result" id="result" readonly>
+                </textarea>
+            </p>
+            <input type="button" value="Calculate" onclick="calculate()">
+            <input type="reset" value="Clear" onclick="">
+           <!-- <button id="fade" type="button" value="Fade Out" onclick=""> -->
+        </form>
+    </body>
+</html>

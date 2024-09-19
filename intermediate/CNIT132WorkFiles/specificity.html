@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Specificity</title>
+ <meta charset="utf-8">
+ <meta name="description" content="testing CSS specificity">
+ <style>
+    .redbold p { color: red; }
+	article p { text-align: center; color: blue; }
+ </style>
+</head>
+<body>
+   <header>
+      <h1>Working with Specificity</h1>
+   </header>
+<article class="redbold">
+   <h2>Heading for first article</h2>
+   <p>Paragraph inside a div with class redbold</p>
+</article>
+<article>
+   <h2>Heading for second article</h2>
+   <p>Paragraph inside a div without class</p>
+</article>
+</body>
+</html>
